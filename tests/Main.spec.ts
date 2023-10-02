@@ -5,12 +5,8 @@ const main = new Reflector(__dirname + '/Module.ts');
 test(
     'should return true',
     () => {
-        expect(main.generate()).toEqual({
-            IModule: {
-                abc: {
-                    kind: 'property',
-                    type: 'string',
-                },
+        expect(main.generate('my_module')).toEqual({
+            my_module: {
                 prop1: {
                     kind: 'property',
                     type: 'string',
@@ -27,6 +23,7 @@ test(
                     kind: 'method',
                     parameters: {
                         newObj: {
+                            isPrimitive: false,
                             type: 'IObject',
                         },
                     },
@@ -50,6 +47,7 @@ test(
                             type: 'string',
                         },
                         obj: {
+                            isPrimitive: false,
                             type: 'IObject',
                         },
                     },

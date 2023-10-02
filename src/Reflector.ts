@@ -7,7 +7,7 @@ export class Reflector {
 		console.log('Reflector:ctor: ', sourceFilePath);
 	}
 
-	public generate() {
+	public generate(customRootName?: string) {
 		// Load the source file
 		// const sourceCode = fs.readFileSync(this.sourceFilePath)?.toString();
 
@@ -65,7 +65,7 @@ export class Reflector {
 			// 	}
 			// });
 
-			const name = (node.name as Identifier).text;
+			const name = customRootName ?? (node.name as Identifier).text;
 			ret[name] = {
 				// name: (node.name as Identifier).text,
 				...members,
