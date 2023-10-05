@@ -70,7 +70,6 @@ export class Reflector {
 				// name: (node.name as Identifier).text,
 				...members,
 			};
-
 		}
 
 		return ret;
