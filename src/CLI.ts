@@ -71,9 +71,22 @@ export default class CLIApp {
         if (outputDir) {
             const outputFile = `${outputDir}/${moduleName}.json`;
             console.log('Writing output to file in directory: ', outputFile);
-            fs.writeFileSync(outputFile, json);
+            this.ensureDirAndWrite(outputFile, json);
         }
     }
+
+    private ensureDirAndWrite(filePath, data) {
+        const dir = path.dirname(filePath);
+
+        try {
+            fs.accessSync(dir);
+        } catch (error) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+
+        fs.writeFileSync(filePath, data);
+    }
+
 
     private checkPathType(path) {
         const stats = fs.statSync(path);
